@@ -7,7 +7,7 @@ from selenium.webdriver.common.keys import Keys
 driver = webdriver.Chrome(executable_path="./chromedriver")
 
 
-# Open up a Firefox browser and navigate to web page.
+# Open up a Chrome browser and navigate to web page.
 driver.get("http://econpy.pythonanywhere.com/ex/001.html")
 
 # Extract lists of "buyers" and "prices" based on xpath.

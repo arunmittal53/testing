@@ -2,22 +2,27 @@
 
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+import json
 
 
 driver = webdriver.Chrome(executable_path="./chromedriver")
 
 
-# Open up a Firefox browser and navigate to web page.
+# Open up a Chrome browser and navigate to web page.
 driver.get("http://quotes.toscrape.com/")
 
-# Extract lists of "buyers" and "prices" based on xpath.
-buyers = driver.find_elements_by_xpath('//span[@class="text"]')
-prices = driver.find_elements_by_xpath('//small[@class="author"]')
+# Extract lists of "quotes" and "authors" based on xpath.
+text1 = driver.find_elements_by_xpath('//span[@class="text"]')
+author1 = driver.find_elements_by_xpath('//small[@class="author"]')
 
-# Print out all of the buyers and prices on page:
-num_page_items = len(buyers)
+# Store all of the quotes and authors on page:
+lst = []
+num_page_items = len(text1)
 for i in range(num_page_items):
-    print(buyers[i].text + " : " + prices[i].text)
+    d = {}
+    d[author1[i].text]=text1[i].text
+    lst.append(d)
+print(json.dumps(lst))
 
 # Clean up (close browser once completed task).
 driver.close()
