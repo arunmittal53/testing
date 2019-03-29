@@ -19,3 +19,5 @@ elem.send_keys(pwd)
 elem = driver.find_element_by_id("loginbutton")
 elem.click()
 
+driver.close()
+
